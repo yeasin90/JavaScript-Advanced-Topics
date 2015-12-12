@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page Title</title>
+	<script type="text/javascript">
+		var Calculator = function() {
+			// private variables
+			var tax = 3; // private variable
+			
+			// private functions
+			function prvateFunction(){
+				
+			};
+			
+			return {
+				// public members	
+				add: function(x,y){
+					console.log('Tax is : ' + (x+y) * tax)
+				}
+			};
+		};
+
+		var cal1 = new Calculator();
+		//cal1.tax; // not possible, because tax is private variables
+		cal1.add(1,2);
+	</script>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+	<div id="Output"></div>
+</body>
+
+</html>

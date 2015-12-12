@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page Title</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			
+			// below is called Class Pattern
+			var CarClassPattern = function(){
+				this.Name;
+				this.Price;
+				this.Tax;
+			};
+			
+			CarClassPattern.prototype = {
+				getCarDetails: function(){
+					console.log(this.Name + this.Price + this.Tax);
+				},
+				calculateTax: function() {
+					console.log('We will calculate next year');
+				}
+			};
+			
+			// will work nice
+			var car1 = new CarClassPattern();
+			car1.carName = 'Honda';
+			car1.carPrice = 50;
+			car1.tax = 3;
+			car1.getCarDetails();
+			car1.calculateTax(); 
+		};
+	</script>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+	<div id="Output"></div>
+</body>
+
+</html>

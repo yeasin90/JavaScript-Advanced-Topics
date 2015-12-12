@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page Title</title>
+	<script type="text/javascript">
+		// revealing protytype pattern 
+		// 1st, see prototype.html to know what is prototype in JavaScript
+		var Car = function() {
+				this.carName;
+				this.carPrice;
+				this.tax
+			};
+			
+		// in prototype pattern Car.prototype = {}
+		// but in revealing prototype : Car.prototype = function() {}
+		Car.prototype = function() {
+			var	getCarDetails = function(){
+					console.log('Car name : ' + this.carName + ' Car price : ' + this.carPrice + ' Car Tax : ' +  this.tax);
+				};
+			var	calculateTax = function(){
+					console.log(this.carPrice * this.tax);
+				};
+				return { getCarDetails: getCarDetails, calculateTax : calculateTax };
+			}();
+			
+			var car1 = new Car();
+			car1.carName = 'Honda';
+			car1.carPrice = 50;
+			car1.tax = 3;
+			car1.getCarDetails(); 
+			car1.calculateTax();
+			
+			var car2 = new Car();
+			car2.carName = 'Honda';
+			car2.carPrice = 70;
+			car2.tax = 2;
+			
+			car2.getCarDetails(); 
+			car2.calculateTax();
+	
+	</script>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+	<div id="Output"></div>
+</body>
+
+</html>

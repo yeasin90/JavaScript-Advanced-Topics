@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page Title</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			
+			// below is also called Class Pattern
+			var CarNonSingleton = function(){
+				this.Name;
+				this.Price;
+				this.Tax;
+			};
+			
+			CarNonSingleton.prototype = {
+				getCarDetails: function(){
+					console.log(this.Name + this.Price + this.Tax);
+				},
+				calculateTax: function() {
+					console.log('We will calculate next year');
+				}
+			};
+			
+			// will work nice
+			var car1 = new Car();
+			car1.carName = 'Honda';
+			car1.carPrice = 50;
+			car1.tax = 3;
+			car1.getCarDetails();
+			car1.calculateTax(); 
+			
+			var CarSingleton = (function(){
+				var Name = 'Honda';
+				var Price = 10;
+				var Tax = 330;
+				
+				return {
+					Name: Name,
+					Price: Price,
+					Tax: Tax
+				}
+			})();
+	
+			var x = new CarSingleton(); // this will throw error, as CarSingleton is SEAB
+			console.log(x.Name);
+		};
+	</script>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+	<div id="Output"></div>
+</body>
+
+</html>

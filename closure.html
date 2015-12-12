@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page Title</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var output = document.getElementById('Output');
+			var closure = new myClosure2();
+			//var closure = myClosure();
+			//output.innerHTML = myNonClosure();
+			output.innerHTML = closure.foo();
+			
+			window.setTimeout(function(){
+				//output.innerHTML += '<br />' + myNonClosure();
+				//output.innerHTML += '<br />' + closure();
+				output.innerHTML += '<br />' + closure.foo();
+			}, 500);
+		}
+		
+		function myNonClosure(){
+			var date = new Date();
+			return date.getMilliseconds();
+		}
+		
+		function myClosure(){
+			var date = new Date();
+			return function(){
+				return date.getMilliseconds();
+			};
+		}
+		
+		var myClosure2 = function(){
+			var date = new Date();
+			// nested function. So, it's a closure
+			var mynestedFunction = function(){
+				return date.getMilliseconds();	
+			};
+			
+			return {
+				foo: mynestedFunction	
+			};
+		}
+	</script>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+	<div id="Output"></div>
+</body>
+
+</html>

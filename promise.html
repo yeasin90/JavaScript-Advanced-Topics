@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page Title</title>
+	<script type="text/javascript">
+	// Promise : http://www.sitepoint.com/overview-javascript-promises/
+		window.onload = function(){
+			if (window.Promise) {
+  				console.log('Promise found');
+				  
+				  // whole Promise object
+				  // takes a callback as an argument
+  				var promise = new Promise(function(resolve, reject) {
+    			var request = new XMLHttpRequest();
+
+    			request.open('GET', 'http://api.icndb.com/jokes/random');
+    			request.onload = function() {
+      			if (request.status == 200) {
+        			resolve(request.response); // we got data here, so resolve the Promise
+      			} else {
+        			reject(Error(request.statusText)); // status is not 200 OK, so reject
+      			}
+    		};
+
+    		request.onerror = function() {
+      			reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+    		};
+
+    		request.send(); //send the request
+  		}); // end of Promise object body
+
+  			console.log('Asynchronous request made.');
+
+  			promise.then(function(data) {
+    			console.log('Got data! Promise fulfilled.');
+    			return "Result";
+  			}, function(error) {
+    			console.log('Promise rejected.');
+    			console.log(error.message);
+  			}).then(function(result) {
+				  console.log("I got data from then neighbour which is : " + result);
+		});
+		} else {
+  			console.log('Promise not available');
+		}			
+	};
+	</script>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+	<div id="Output"></div>
+</body>
+
+</html>

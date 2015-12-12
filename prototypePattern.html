@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page Title</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			
+			// Overridding
+			myNS.Car.prototype = {
+				getCarDetails: function(){
+					console.log('Method has been overridden. Car name : ' + this.carName + ' Car price : ' + this.carPrice + ' Car Tax : ' +  this.tax);
+				},
+				calculateTax: function(){
+					console.log('Method has been overridden. ' + this.carPrice * this.tax);
+				}
+			};
+			
+			var car1 = new myNS.Car();
+			car1.carName = 'Honda';
+			car1.carPrice = 50;
+			car1.tax = 3;
+			car1.getCarDetails(); // this method is in object's prototype
+			car1.calculateTax(); // this method is in object's prototype
+			
+			var car2 = new myNS.Car();
+			car2.carName = 'Honda';
+			car2.carPrice = 70;
+			car2.tax = 2;
+			
+			car2.getCarDetails(); // this method is in object's prototype
+			car2.calculateTax(); // this method is in object's prototype
+		};
+		
+		// namespace
+		var myNS = myNS || {}; // this means, if myNS has already been defined, use it. Otherwise, create a new object that can be used as for namespace
+		
+		// rather than var Car, we used namepsapce to avoid variable conflicting
+		myNS.Car = function(){
+				this.carName;
+				this.carPrice;
+				this.tax
+			};
+			
+			// We defined Car object's variable in the contructor area
+			// and functions in the Car object's prototype are
+			// This is because, Car object's variables are gonna be unique for each instance of Car
+			// But Car objetc's functions are not unique. There task is just to perform operation based on different instance of Car object
+			myNS.Car.prototype = {
+				getCarDetails: function(){
+					console.log('Car name : ' + this.carName + ' Car price : ' + this.carPrice + ' Car Tax : ' +  this.tax);
+				},
+				calculateTax: function(){
+					console.log(this.carPrice * this.tax);
+				}
+			};
+	</script>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+	<div id="Output"></div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page Title</title>
+	<script type="text/javascript">
+		// module vs revealing module : http://codrspace.com/fourcolors/module-and-re/
+		var calculator = function(tax){
+			
+			// private
+			var doAdd = function(){
+				return console.log(tax * 2);
+			}
+			
+			// public 
+			return {
+				add: doAdd // Expose public member
+			};
+		}(10); // self invoking. Will invoke here and retunr. So, this is a Singleton.
+			   // this () is not mandatory. if we use (), then this object will be Singleton/
+		
+		calculator.add();
+	</script>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+	<div id="Output"></div>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Page Title</title>
+	<script type="text/javascript">
+		// http://codeplanet.io/javascript-apply-vs-call-vs-bind/
+		// vvi for call vs apply vs bind : http://js-tricks.com/difference-between-apply-call-bind-in-javascript
+		
+		// call
+		var person1 = {firstName: 'call : Jon', lastName: 'call : Kuperman'};
+		var person2 = {firstName: 'call : Kelly', lastName: 'call : King'};
+ 
+		function say1(greeting) {
+    		console.log(greeting + ' ' + this.firstName + ' ' + this.lastName);
+		};
+ 
+		say.call(person1, 'call : Hello'); // Hello Jon Kuperman
+		say.call(person2, 'call : Hello'); // Hello Kelly King
+		
+		// apply
+		var person3 = {firstName: 'apply : Jon', lastName: 'apply : Kuperman'};
+		var person4 = {firstName: 'apply : Kelly', lastName: 'apply : King'};
+ 
+		function say2(greeting) {
+    		console.log(greeting + ' ' + this.firstName + ' ' + this.lastName);
+		};
+ 
+		say2.apply(person3, ['apply : Hello']); // Hello Jon Kuperman
+		say2.apply(person4, ['apply : Hello']); // Hello Kelly King
+		
+		// bind
+		var pollute = function() {
+   				 this.innerHTML = 'Demo';
+		};
+
+		document.getElementById('demo').addEventListener('click', function() {
+  			window.setTimeout(pollute.bind(this), 1000);
+		});
+		
+		
+		var sum = function(a, b) {
+    		return a + b;
+		};
+
+		var addTo = sum.bind(this, 123);
+		console.log(addTo(456)); // = 579
+		
+	</script>
+</head>
+
+<body>
+
+	<h1>This is a Heading</h1>
+	<p>This is a paragraph.</p>
+	<div id="Output"></div>
+</body>
+
+</html>
